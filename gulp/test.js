@@ -9,16 +9,17 @@ const { logErrors, toDest, streamToPromise } = require('./lib/helpers');
 
 
 const runMocha = (type) => {
+  const originalMochaFiles = config.mocha.files;
+  config.mocha.files = config.tests[type];
   return new Promise((good, bad) => {
-    config.mocha.files = config.tests[type];
     spawn(config.mocha.pathToMocha, config.mocha.opts, {
       cwd: resolve(__dirname, '..'),
       stdio: 'inherit',
       env: config.mocha.env,
     })
-      .on('close', code => code === 0 ? good() : bad('Tests Failed'))
+      .on('close', code => code === 0 ? good() : bad(new Error('Tests Failed')))
       .on('error', bad);
-  });
+  }).finally(() => config.mocha.files = originalMochaFiles);
 };
 
 const test = (type) => {

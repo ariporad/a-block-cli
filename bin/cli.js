@@ -6,4 +6,4 @@
  *
  * This is also *NOT* tested or linted.
  */
-require('../dist/cli')(process.argv);
+require('../dist/cli')(process.argv.slice(2));
