@@ -43,7 +43,7 @@
     "once": "1.3.3",
     "proxyquire": "1.7.3",
     "require-dir": "0.3.0",
-    "rewire": "2.5.0",
+    "rewire": "2.5.2",
     "shelljs": "0.5.3",
     "sinomocha": "0.2.4",
     "sinon": "1.17.2",
